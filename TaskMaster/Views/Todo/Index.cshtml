@@ -1,0 +1,26 @@
+﻿@using EntityLayer
+@model List<TodoItem>
+@{
+	ViewData["Title"] = "Index";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Todo ID</th>
+        <th>Todo Name</th>
+        <th>Description</th>
+        <th>Completed</th>
+        <th>Category</th> <!-- Kategori başlığı eklendi -->
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TodoId</td>
+            <td>@item.TodoName</td>
+            <td>@item.TodoDescription</td>
+            <td>@item.IsCompleted</td>
+            <td>@item.Category.CategoryName</td> <!-- Kategori adı eklendi, null kontrolü yapıldı -->
+        </tr>
+    }
+</table>
+

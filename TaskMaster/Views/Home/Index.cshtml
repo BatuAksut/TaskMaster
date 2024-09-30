@@ -2,7 +2,48 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    /* Bu sayfaya özgü stiller */
+    .home-page {
+        display: flex; /* Flexbox düzeni */
+        flex-direction: column; /* Dikey yönde yerleştir */
+        justify-content: center; /* Dikeyde ortalar */
+        align-items: center; /* Yatayda ortalar */
+        height: 100vh; /* Ekranın tam yüksekliği */
+        margin: 0; /* Varsayılan margin'i sıfırlar */
+        text-align: center; /* Metni ortalar */
+    }
+
+        /* Paragraf için stil */
+        .home-page p {
+            font-size: 1.2rem; /* Yazı boyutu */
+            color: #5d4037; /* Yazı rengi */
+            line-height: 1.6; /* Satır yüksekliği */
+            max-width: 900px; /* Maksimum genişlik */
+            margin: 10px 0; /* Üst ve alt margin */
+            padding: 0 15px; /* Yatayda iç boşluk */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Gölge efekti */
+        }
+
+    img {
+        width: 300px; /* Yeni genişlik ayarı */
+        height: 300px; /* Yükseklik ayarı (yuvarlak görünüm için) */
+        border-radius: 50%; /* Yuvarlak görünüm için köşe yuvarlama */
+        object-fit: cover; /* Resmin orantılı görünmesi için */
+        margin-bottom: 40px; /* Resim ile başlık arasındaki boşluk */
+        margin-top: -200px; /* Resim ile navbar arasındaki boşluğu azaltır */
+    }
+
+</style>
+
+<div class="home-page">
+    <div class="container">
+        <img src="https://i.ibb.co/TT0kY94/robot.webp" />
+    </div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome to Task Master!</h1>
+        <br />
+        <br />
+        <p>Task Master is a task management tool designed to help you manage your time better. You can list your tasks, organize them by priority, and check them off as you complete them, allowing you to track your progress. This makes it easier to achieve both personal and work-related goals.</p>
+    </div>
 </div>

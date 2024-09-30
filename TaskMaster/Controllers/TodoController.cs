@@ -5,6 +5,7 @@ using DataAccessLayer.Concrete;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TaskMaster.Models;
 
 namespace TaskMaster.Controllers
 {
@@ -19,11 +20,22 @@ namespace TaskMaster.Controllers
             _todoService = todoService;
             _categoryService = categoryService;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? selectedCategoryId)
         {
-            var todoData = todoContext.TodoItems.Include(t => t.Category).ToList();
-            return View(todoData);
+            var todoViewModel = new TodoViewModel
+            {
+                SelectedCategoryId = selectedCategoryId,
+                Categories = todoContext.Categories.ToList(), // Tüm kategorileri alın
+                TodoItems = todoContext.TodoItems
+                    .Include(t => t.Category)
+                    .Where(t => !t.IsCompleted &&
+                                (selectedCategoryId == null || t.CategoryId == selectedCategoryId))
+                    .ToList()
+            };
+
+            return View(todoViewModel);
         }
+
         [HttpGet]
         public IActionResult Add()
         {
@@ -42,5 +54,19 @@ namespace TaskMaster.Controllers
 
 			}
 		}
-	}
+
+        [HttpPost]
+        public IActionResult Complete(int id)
+        {
+            var todoItem = todoContext.TodoItems.FirstOrDefault(t => t.TodoId == id);
+
+            if (todoItem != null)
+            {
+                todoItem.IsCompleted = true;
+                todoContext.SaveChanges();
+            }
+
+            return RedirectToAction("Index"); // Tamamlanmış görevleri listelemeden geri dön
+        }
+    }
 }

@@ -7,23 +7,95 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TaskMaster.styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <style>
+        /* Navbar için özel stiller */
+        #customNavbar {
+            background-color: rgba(250, 243, 224, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+            #customNavbar .nav-link {
+                color: #5d4037;
+                font-weight: bold;
+                font-size: 2rem; /* Daha büyük boyut */
+                line-height: 1.5;
+            }
+
+                #customNavbar .nav-link:hover {
+                    color: #3e2723;
+                }
+
+            #customNavbar .navbar-brand {
+                color: #5d4037;
+                font-size: 2.5rem; /* Daha büyük boyut */
+                font-weight: bold;
+            }
+
+        .navbar-nav {
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Footer Stili */
+        footer {
+            width: 100%; /* Tam genişlik */
+            background-color: #fff8e1;
+            color: #5d4037; /* Metin rengi */
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            z-index: -5; /* Arka planda kalmasını sağlamak için */
+        }
+
+            footer a {
+                color: #5d4037; /* Link rengi */
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    color: #3e2723; /* Hover rengi */
+                }
+
+        #customNavbar .navbar-nav {
+            flex-grow: 1; /* Öğelerin genişlemesine izin verir */
+        }
+
+        #customNavbar .nav-item {
+            margin: 0 20px; /* Öğeler arasına boşluk ekler */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TaskMaster</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav id="customNavbar" class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav d-flex justify-content-between w-100">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item mx-auto">
+                            <!-- Ortalamak için mx-auto kullandık -->
+                            <span class="navbar-brand"> </span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Todo" asp-action="Index">To-do List</a>
                         </li>
                     </ul>
                 </div>
@@ -36,7 +108,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer">
         <div class="container">
             &copy; 2024 - TaskMaster - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

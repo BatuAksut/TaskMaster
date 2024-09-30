@@ -1,22 +1,222 @@
+/* General Styles */
+html, body {
+    overflow-x: hidden;
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 60px;
+    background-color: #faf3e0;
+    color: #333;
+    line-height: 1.6;
+    width: 100%;
+    max-width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+}
+
+/* Container adjustments */
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: #5d4037;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+p {
+    color: #4d5656;
+    font-size: 1.15rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+/* Links */
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    a:hover {
+        color: #1abc9c;
+        text-decoration: underline;
+    }
+
+/* Buttons */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+button, .btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+    button:hover, .btn:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+/* Cards */
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+/* Forms */
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    }
+
+/* Navbar */
+#customNavbar {
+    background-color: rgba(250, 243, 224, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    padding: 0.5rem 1rem;
+}
+
+    #customNavbar .navbar-collapse {
+        justify-content: center;
+    }
+
+    #customNavbar .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
+
+    #customNavbar .nav-link {
+        color: #5d4037;
+        font-weight: bold;
+        font-size: 1.5rem;
+        line-height: 1.5;
+        padding: 0.5rem 1rem;
+    }
+
+        #customNavbar .nav-link:hover {
+            color: #3e2723;
+        }
+
+    #customNavbar .navbar-brand {
+        color: #5d4037;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 0 1rem;
+    }
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background-color: #fff8e1;
+    color: #5d4037;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    z-index: 10;
+}
+
+    footer a {
+        color: #5d4037;
+        text-decoration: none;
+    }
+
+        footer a:hover {
+            color: #3e2723;
+        }
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    #customNavbar .navbar-brand {
+        font-size: 2rem;
+    }
+
+    #customNavbar .nav-link {
+        font-size: 1.2rem;
+    }
 }

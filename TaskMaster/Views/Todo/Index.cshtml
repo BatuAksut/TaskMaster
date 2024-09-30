@@ -1,26 +1,51 @@
-﻿@using EntityLayer
-@model List<TodoItem>
+﻿
+@model TodoViewModel
+
 @{
-	ViewData["Title"] = "Index";
+    ViewData["Title"] = "Todo List";
 }
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Todo List</h1>
 
-<table class="table table-bordered">
-    <tr>
-        <th>Todo ID</th>
-        <th>Todo Name</th>
-        <th>Description</th>
-        <th>Completed</th>
-        <th>Category</th> <!-- Kategori başlığı eklendi -->
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.TodoId</td>
-            <td>@item.TodoName</td>
-            <td>@item.TodoDescription</td>
-            <td>@item.IsCompleted</td>
-            <td>@item.Category.CategoryName</td> <!-- Kategori adı eklendi, null kontrolü yapıldı -->
-        </tr>
-    }
-</table>
+    <form method="get" asp-action="Index">
+        <select name="selectedCategoryId" onchange="this.form.submit()">
+            <option value="">All Categories</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.CategoryId"
+                        selected="@(Model.SelectedCategoryId == category.CategoryId ? "selected" : null)">
+                    @category.CategoryName
+                </option>
+            }
+        </select>
+    </form>
 
+    <div class="row mt-4">
+        @foreach (var item in Model.TodoItems)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.TodoName</h5>
+                        <p class="card-text">@item.TodoDescription</p>
+                        <p><strong>Category:</strong> @item.Category.CategoryName</p>
+                        @if (!item.IsCompleted)
+                        {
+                            <form asp-action="Complete" asp-route-id="@item.TodoId" method="post">
+                                <button type="submit" class="btn btn-success btn-sm">Mark as Complete</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Completed</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <a href="/Todo/Add" class="btn btn-primary">Add New Todo</a>
+    </div>
+</div>
